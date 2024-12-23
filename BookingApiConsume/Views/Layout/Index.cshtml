@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+@await Component.InvokeAsync("_LayoutHead")
+
+<body>
+
+    @await Component.InvokeAsync("_LayoutHeader")
+
+    <section class="banner_area">
+
+        @await Component.InvokeAsync("_LayoutBanner")
+
+        @await Component.InvokeAsync("_LayoutSearchBookingBar")    
+        
+    </section>
+   
+	@RenderBody()
+   
+    <section class="facilities_area section_gap">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="">
+        </div>
+    </section>
+
+    @await Component.InvokeAsync("_LayoutFooter")
+
+    @await Component.InvokeAsync("_LayoutScript")
+   
+</body>
+</html>
