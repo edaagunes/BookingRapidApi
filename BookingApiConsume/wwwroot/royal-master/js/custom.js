@@ -60,10 +60,14 @@
     
     
     $('select').niceSelect();
-    $('#datetimepicker11,#datetimepicker1').datetimepicker({
-        daysOfWeekDisabled: [0, 6]
+    $('#datetimepicker11, #datetimepicker1').datetimepicker({
+        format: 'dd/mm/yyyy', // Sadece tarih formatýný kullan
+        autoclose: true,       // Seçim yapýldýðýnda kapanacak
+        todayHighlight: true,  // Bugün tarihini vurgula
+        startDate: new Date(), // Bugünden önceki tarihleri engelle
+        clearBtn: true,        // Temizleme butonu ekle
+        daysOfWeekDisabled: [0, 6] // Cumartesi ve Pazar günlerini devre dýþý býrak
     });
-    
      /*---------gallery isotope js-----------*/
     function galleryMasonry(){
         if ( $('#gallery').length ){
