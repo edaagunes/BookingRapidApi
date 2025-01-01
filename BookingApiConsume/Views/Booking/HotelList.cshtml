@@ -1,8 +1,8 @@
-﻿@{
-	ViewData["Title"] = "Index";
+﻿@model BookingApiConsume.Models.HotelsViewModel.Data
+@{
+	ViewData["Title"] = "HotelList";
 	Layout = "~/Views/Layout/Index.cshtml";
 }
-
 
 <div class="hotel_booking_area position">
 	<div class="container">
@@ -27,7 +27,7 @@
 
 									<div class="form-group">
 										<div class='input-group date' id='datetimepicker11'>
-											<input type='text' class="form-control" name="arrival_date" id="checkin" placeholder="Giriş Tarihi" />
+											<input type='text' class="form-control" name="checkIn" id="checkin" placeholder="Giriş Tarihi" />
 											<span class="input-group-addon">
 												<i class="fa fa-calendar" aria-hidden="true"></i>
 											</span>
@@ -36,7 +36,7 @@
 
 									<div class="form-group">
 										<div class='input-group date' id='datetimepicker1'>
-											<input type='text' class="form-control" name="departure_date" id="checkout" placeholder="Çıkış Tarihi" />
+											<input type='text' class="form-control" name="checkOut" id="checkout" placeholder="Çıkış Tarihi" />
 											<span class="input-group-addon">
 												<i class="fa fa-calendar" aria-hidden="true"></i>
 											</span>
@@ -48,7 +48,7 @@
 								<div class="book_tabel_item">
 									<div class="form-group">
 										<div class="input-group">
-											<input type="number" class="form-control" name="adults" id="adults" value="1" min="1" max="10" placeholder="Kişi Sayısı">
+											<input type="number" class="form-control" name="adultCount" id="adults" value="1" min="1" max="10" placeholder="Kişi Sayısı">
 											<span class="input-group-addon">
 												<i class="fa fa-user" aria-hidden="true"></i>
 											</span>
@@ -59,14 +59,14 @@
 							<div class="col-md-4">
 								<div class="book_tabel_item">
 									@* <div class="input-group">
-                                        <select class="wide" name="adults" id="adults">
-                                            <option data-display="Oda Sayısı">Oda Sayısı</option>
-                                            @for (int i = 1; i <= 4; i++)
-                                            {
-                                                <option value="@i">@i</option>
-                                            }
-                                        </select>
-                                    </div> *@
+										<select class="wide" name="adultCount" id="adults">
+											<option data-display="Oda Sayısı">Oda Sayısı</option>
+											@for (int i = 1; i <= 4; i++)
+											{
+												<option value="@i">@i</option>
+											}
+										</select>
+									</div> *@
 									<button type="submit" class="book_now_btn button_hover">Otel Ara</button>
 								</div>
 							</div>
@@ -128,5 +128,32 @@
 
 
 
+<section class="accomodation_area section_gap">
+	<div class="container">
+		<div class="section_title text-center">
+			<h2 class="title_color">Otel Önerileri</h2>
+			<p>Bu bölgede yer alan en iyi otelleri keşfedin. Tatiliniz ya da iş seyahatiniz için mükemmel konaklama fırsatları.</p>
+		</div>
+
+
+		<div class="row mb_30">
+			@foreach (var item in Model.hotels)
+			{
+				<div class="col-lg-3 col-sm-6">
+					<div class="accomodation_item text-center">
+						<div class="hotel_img">
+							<img src="@item.property.photoUrls[0]" style="width:263px;height:270px" alt="">
+							<a href="#" class="btn theme_btn button_hover">İncele</a>
+						</div>
+						<a href="#"><h4 class="sec_h4">@item.property.name</h4></a>
+						<h5>@item.property.priceBreakdown.grossPrice.value.ToString("F2") @item.property.priceBreakdown.grossPrice.currency <small>/ gecelik</small></h5>
+						<h6>Otel Puanı: @item.property.reviewScore</h6>
+					</div>
+				</div>
+			}
+		</div>
+
+	</div>
+</section>
 
 

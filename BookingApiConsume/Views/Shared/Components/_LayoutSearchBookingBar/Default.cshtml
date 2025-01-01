@@ -6,12 +6,13 @@
             </div>
             <div class="col-md-9">
                 <div class="boking_table">
+                    <form method="post" asp-action="HotelList" asp-controller="Booking">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="book_tabel_item">
                                 <div class="form-group">
                                     <div class='input-group'>
-                                        <input type='text' class="form-control" placeholder="Şehir Bilgisi" />
+                                            <input type='text' class="form-control" name="city" id="city" placeholder="Şehir Bilgisi" />
                                         <span class="input-group-addon">
                                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         </span>
@@ -20,7 +21,7 @@
 
                                 <div class="form-group">
                                     <div class='input-group date' id='datetimepicker11'>
-                                        <input type='text' class="form-control" placeholder="Giriş Tarihi" />
+                                            <input type='text' class="form-control" name="checkIn" id="checkin" placeholder="Giriş Tarihi" />
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
                                         </span>
@@ -29,7 +30,7 @@
 
                                 <div class="form-group">
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input type='text' class="form-control" placeholder="Çıkış Tarihi" />
+                                            <input type='text' class="form-control" name="checkOut" id="checkOut" placeholder="Çıkış Tarihi" />
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
                                         </span>
@@ -40,38 +41,33 @@
                         <div class="col-md-4">
                             <div class="book_tabel_item">
                                 <div class="input-group">
-                                    <select class="wide">
+                                        <select class="wide" name="adultCount" id="adults">
                                         <option data-display="Yetişkin">Yetişkin</option>
-                                        <option value="1">1 Yetişkin</option>
-                                        <option value="2">2 Yetişkin</option>
-                                        <option value="3">3 Yetişkin</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <select class="wide">
-                                        <option data-display="Çocuk">Çocuk</option>
-                                        <option value="1">1 Çocuk</option>
-                                        <option value="2">2 Çocuk</option>
-                                        <option value="3">3 Çocuk</option>
+                                            @for (int i = 1; i <= 4; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="book_tabel_item">
-                                <div class="input-group">
-                                    <select class="wide">
+                                @* <div class="input-group">
+                                    <select class="wide" name="RoomNumber">
                                         <option data-display="Oda Sayısı">Oda Sayısı</option>
-                                        <option value="1">1 Oda</option>
-                                        <option value="2">2 Oda</option>
-                                        <option value="3">3 Oda</option>
+                                            @for (int i = 1; i <= 4; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
                                     </select>
                                    
-                                </div>
-                                <a class="book_now_btn button_hover" href="#">Rezervasyon Yap</a>
+                                </div> *@
+                                <button type="submit" class="book_now_btn button_hover" href="#">Otel Ara</button>
                             </div>                        
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -105,7 +101,7 @@
     $(document).ready(function () {
         // Arrival Date Picker (Türkçe Dil)
         $('#datetimepicker11').datepicker({
-            format: 'dd/mm/yyyy',  // Tarih formatını belirler
+            format: 'yyyy-mm-dd',  // Tarih formatını belirler
             autoclose: true,  // Seçim yapıldığında kapanmasını sağlar
             todayHighlight: true,  // Bugünün tarihi vurgulanır
             startDate: new Date(),  // Bugünden önceki tarihler seçilemez
@@ -115,7 +111,7 @@
 
         // Departure Date Picker (Türkçe Dil)
         $('#datetimepicker1').datepicker({
-            format: 'dd/mm/yyyy',  // Tarih formatını belirler
+            format: 'yyyy-mm-dd',  // Tarih formatını belirler
             autoclose: true,  // Seçim yapıldığında kapanmasını sağlar
             todayHighlight: true,  // Bugünün tarihi vurgulanır
             startDate: new Date(),  // Bugünden önceki tarihler seçilemez
